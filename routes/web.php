@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,3 +41,8 @@ Route::prefix('/dashboard')->group(function(){
         return redirect()->route('dashboard.user');
     });
 });
+
+// Route::get('/categories', function(){
+//     return view('categories.index');
+// });
+Route::get('/categories', [CategoryController::class, 'index']);
