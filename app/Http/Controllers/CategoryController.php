@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {
@@ -21,9 +22,20 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        Category::create([
-            'name' => $request->name
+        // dd($request->all());
+        $data = $request->validate([
+            'name' => 'required|string',
+            'image' => 'required',
         ]);
+
+        if($request->hasFile('image'))
+        {
+            $imageNmae = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('categoryImages'), $imageNmae);
+            $data = array_merge($data, ['image' => $imageNmae]);
+        }
+
+        Category::create($data);
 
         return redirect()->route('categories.index');
     }
@@ -42,13 +54,14 @@ class CategoryController extends Controller
         return view('categories.edit', compact('category'));
     }
 
-    public function update(Request $request)
+    public function update(CategoryUpdateRequest $request)
     {
+        $validatedData = $request->validated();
+
         $category = Category::find($request->id);
 
-        $category->update([
-            'name' => $request->name
-        ]);
+        $category->update($validatedData);
+
         return redirect()->route('categories.index');
     }
 
