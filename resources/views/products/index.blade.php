@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    {{-- {{dd($products)}} --}}
     <div class="container">
         <h1 class="mb-4">Product Lists</h1>
         <a href="{{ route('products.create') }}" class="btn btn-outline-success mb-4">+ Create</a>
@@ -18,6 +19,7 @@
                     <th class="bg-primary text-white">NAME</th>
                     <th class="bg-primary text-white">DESCRIPTION</th>
                     <th class="bg-primary text-white">PRICE</th>
+                    <th class="bg-primary text-white">CATEGORY</th>
                     <th class="bg-primary text-white">STATUS</th>
                     <th class="bg-primary text-white">ACTION</th>
                 </tr>
@@ -29,6 +31,7 @@
                         <th>{{ $data['name'] }}</th>
                         <th>{{ $data['description'] }}</th>
                         <th>{{ $data['price'] }}</th>
+                        <th>{{ $data['category']['name'] }}</th>
                         <th>
                             @if ($data->status === 1)
                                 <span class="text-success">Active</span>

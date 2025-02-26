@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container">
+        {{-- {{dd($categories)}} --}}
         <div class="card mt-4">
             <div class="card-header">
                 + Create Product
@@ -29,6 +30,14 @@
                     <label for="price" class="form-label">Price :</label>
                     <input type="text" name="price" placeholder="Enter Product Price"
                         class="form-control mb-2">
+                </div>
+                <div class="card-body">
+                    <label for="category" class="form-label">Select Your Category</label>
+                    <select name="category_id" id="category_id">
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="card-body">
                     <div class="form-check from-switch">
