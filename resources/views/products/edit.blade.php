@@ -18,17 +18,17 @@
                 @csrf
                 <div class="card-body">
                     <label for="name" class="form-label">Name :</label>
-                    <input type="text" name="name" class="form-control card-body"
+                    <input type="text" name="name" class="form-control"
                         value="{{ $product->name }}" />
                 </div>
                 <div class="card-body">
                     <label for="description" class="form-label">Description :</label>
-                    <input type="text" name="description" class="form-control card-body"
+                    <input type="text" name="description" class="form-control"
                         value="{{ $product->description }}" />
                 </div>
                 <div class="card-body">
                     <label for="price" class="form-label">Price :</label>
-                    <input type="text" name="price" class="form-control card-body"
+                    <input type="text" name="price" class="form-control"
                         value="{{ $product->price }}" />
                 </div>
                 <div class="card-body">

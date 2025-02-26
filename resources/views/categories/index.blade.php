@@ -16,10 +16,10 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>NAME</th>
-                    <th>IMAGE</th>
-                    <th>ACTION</th>
+                    <th  class="bg-primary text-white">ID</th>
+                    <th  class="bg-primary text-white">NAME</th>
+                    <th  class="bg-primary text-white">IMAGE</th>
+                    <th  class="bg-primary text-white">ACTION</th>
                 </tr>
             </thead>
             <tbody>

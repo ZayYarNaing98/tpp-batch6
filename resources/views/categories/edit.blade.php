@@ -25,7 +25,13 @@
             <form action="{{route('categories.update', $category->id)}}" method="POST">
                 @csrf
                 <div class="card-body">
-                    <input type="text" class="form-control card-body" name="name" value="{{$category->name}}">
+                    <label for="name" class="form-label">Category Name:</label>
+                    <input type="text" class="form-control" name="name" value="{{$category->name}}">
+                </div>
+                <div class="card-body">
+                    <label for="image" class="form-label">Category Image:</label>
+                    <img src="{{ asset('categoryImages/' . $category->image) }}" alt="{{ $category->image }}"
+                        style="width:50px; height:50px" />
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-primary me-2" type="submit">

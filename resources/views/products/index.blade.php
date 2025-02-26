@@ -16,9 +16,9 @@
                 <tr>
                     <th class="bg-primary text-white">ID</th>
                     <th class="bg-primary text-white">NAME</th>
-                    <th class="bg-primary text-white">Description</th>
-                    <th class="bg-primary text-white">Price</th>
-                    <th class="bg-primary text-white">Status</th>
+                    <th class="bg-primary text-white">DESCRIPTION</th>
+                    <th class="bg-primary text-white">PRICE</th>
+                    <th class="bg-primary text-white">STATUS</th>
                     <th class="bg-primary text-white">ACTION</th>
                 </tr>
             </thead>

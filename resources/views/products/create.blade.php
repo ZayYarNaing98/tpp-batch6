@@ -11,19 +11,8 @@
     <div class="container">
         <div class="card mt-4">
             <div class="card-header">
-                + Create Category
+                + Create Product
             </div>
-            {{-- <form action="{{ route('products.store') }}" method="POST">
-                @csrf
-                <input type="text" name="name" placeholder="Enter Product Name" class="form-control card-body mb-4">
-                <input type="text" name="description" placeholder="Enter Product Description" class="form-control card-body mb-4">
-                <input type="text" name="price" placeholder="Enter Product Price" class="form-control card-body mb-4">
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">+Create</button>
-                    <a href="{{ route('products.index') }}" class="btn btn-secondary">Back</a>
-                </div>
-            </form> --}}
-
             <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
@@ -36,10 +25,6 @@
                     <input type="text" name="description" placeholder="Enter Product Description"
                         class="form-control mb-2">
                 </div>
-                {{-- <div class="card-body">
-                    <label for="image" class="form-label">IMAGE :</label>
-                    <input type="file" name="image" class="form-control" id="image" />
-                </div> --}}
                 <div class="card-body">
                     <label for="price" class="form-label">Price :</label>
                     <input type="text" name="price" placeholder="Enter Product Price"

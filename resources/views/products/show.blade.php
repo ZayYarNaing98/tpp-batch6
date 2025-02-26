@@ -16,13 +16,16 @@
                     Product Detail
                 </div>
                 <div class="card-body">
-                    <input type="text" name="name" value="{{ $product->name }}" class=" form-control card-body"/>
+                    <label for="name" class="form-label">Name :</label>
+                    <input type="text" name="name" value="{{ $product->name }}" class=" form-control"/>
                 </div>
                 <div class="card-body">
-                    <input type="text" name="description" value="{{ $product->description }}" class=" form-control card-body"/>
+                    <label for="description" class="form-label">Description :</label>
+                    <input type="text" name="description" value="{{ $product->description }}" class=" form-control"/>
                 </div>
                 <div class="card-body">
-                    <input type="text" name="price" value="{{ $product->price }}" class=" form-control card-body"/>
+                    <label for="price" class="form-label">Price :</label>
+                    <input type="text" name="price" value="{{ $product->price }}" class=" form-control"/>
                 </div>
                 <div class="card-body">
                     <div class="form-check form-switch">
