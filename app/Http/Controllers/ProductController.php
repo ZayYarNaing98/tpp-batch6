@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Repositories\Product\ProductRepositoryInterface;
 
 class ProductController extends Controller
 {
+    protected $productRepository;
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
     public function index()
     {
         $products = Product::with('category')->get();
