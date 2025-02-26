@@ -18,6 +18,7 @@
                 <tr>
                     <th>ID</th>
                     <th>NAME</th>
+                    <th>IMAGE</th>
                     <th>ACTION</th>
                 </tr>
             </thead>
@@ -26,6 +27,10 @@
                     <tr>
                         <th>{{ $data['id'] }}</th>
                         <th>{{ $data['name'] }}</th>
+                        <th>
+                            <img src="{{ asset('categoryImages/' . $data->image) }}" alt="{{ $data->image }}"
+                            style="width:50px; height:50px;" />
+                        </th>
                         <th class="d-flex">
                             <a href="{{ route('categories.show', ['id' => $data->id]) }}" class="btn btn-outline-warning me-2">Show</a>
                             <a href="{{route('categories.edit', ['id' => $data->id])}}" class="btn btn-outline-secondary me-2">Edit</a>
