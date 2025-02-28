@@ -33,6 +33,8 @@
                         <td>{{ $user->address }}</td>
                         <td>{{ $user->gender }}</td>
                         <th class="d-flex">
+                            <a href="{{ route('users.edit', ['user' => $user->id]) }}"
+                                class="btn btn-outline-secondary me-2">Edit</a>
                             <form action="{{route('users.destroy', $user->id)}}" method="POST">
                                 @csrf
                                 {{ method_field('DELETE') }}
