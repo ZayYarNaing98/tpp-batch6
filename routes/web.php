@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RolesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PermissionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,6 +42,11 @@ Route::post('/products/{id}', [ProductController::class, 'delete'])->name('produ
 // User
 
 Route::resource('/users', UserController::class);
+
+// Role
+Route::resource('roles', RoleController::class);
+
+Route::resource('permissions', PermissionController::class);
 
 Auth::routes(['register' => false]);
 

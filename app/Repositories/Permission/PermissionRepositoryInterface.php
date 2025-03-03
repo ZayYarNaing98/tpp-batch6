@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories\Permission;
 
-interface UserRepositoryInterface
+interface PermissionRepositoryInterface
 {
     public function index();
 

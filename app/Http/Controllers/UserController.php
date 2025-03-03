@@ -2,24 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
+use App\Repositories\Role\RoleRepositoryInterface;
+use App\Repositories\User\UserRepositoryInterface;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    protected $userRepository;
+    protected $roleRepository;
+    protected $userService;
+
+    public function __construct(UserRepositoryInterface $userRepository, RoleRepositoryInterface $roleRepository)
+    {
+        $this->middleware('auth');
+        $this->userRepository = $userRepository;
+        $this->roleRepository = $roleRepository;
+    }
+
     public function index()
     {
-        $users = User::get();
+        $users = $this->userRepository->index();
 
         return view('users.index', compact('users'));
     }
@@ -29,7 +37,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = $this->roleRepository->index();
+
+        return view('users.create', [
+            "roles" => $roles
+        ]);
     }
 
     /**
@@ -37,16 +49,17 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $data = $request->validated();
+        $validatedData = $request->validated();
 
-        User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'gender' => $data['gender'],
-            'address' => $data['address'],
-            'phone' => $data['phone'],
+        $user = $this->userRepository->store([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'phone' => $validatedData['phone'],
+            'address' => $validatedData['address'],
         ]);
+
+        $user->roles()->sync($validatedData['roles']);
 
         return redirect()->route('users.index');
     }
@@ -64,9 +77,11 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
+        $roles = $this->roleRepository->index();
 
-        return view('users.edit', compact('user'));
+        $user = $this->userRepository->show($id);
+
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -76,15 +91,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validated();
 
-        $user = User::find($id);
-
-        $user->update([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'phone' => $validatedData['phone'],
-            'address' => $validatedData['address'],
-            'gender' => $validatedData['gender'],
-        ]);
+        $user = $this->userRepository->update($validatedData, $id);
 
         return redirect()->route('users.index');
     }
@@ -94,8 +101,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::find($id);
-        $user->delete();
+        $this->userRepository->destroy($id);
 
         return redirect()->route('users.index');
     }
