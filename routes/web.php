@@ -46,6 +46,8 @@ Route::resource('/users', UserController::class);
 // Role
 Route::resource('roles', RoleController::class);
 
+Route::post('/users/{id}/status', [UserController::class, 'status'])->name('users.status');
+
 Route::resource('permissions', PermissionController::class);
 
 Auth::routes(['register' => false]);

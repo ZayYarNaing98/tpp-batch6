@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Services\User\UserService;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\Role\RoleRepositoryInterface;
@@ -18,11 +20,12 @@ class UserController extends Controller
     protected $roleRepository;
     protected $userService;
 
-    public function __construct(UserRepositoryInterface $userRepository, RoleRepositoryInterface $roleRepository)
+    public function __construct(UserRepositoryInterface $userRepository, RoleRepositoryInterface $roleRepository, UserService $userService)
     {
         $this->middleware('auth');
         $this->userRepository = $userRepository;
         $this->roleRepository = $roleRepository;
+        $this->userService = $userService;
     }
 
     public function index()
@@ -102,6 +105,13 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $this->userRepository->destroy($id);
+
+        return redirect()->route('users.index');
+    }
+
+    public function status($id)
+    {
+        $this->userService->status($id);
 
         return redirect()->route('users.index');
     }

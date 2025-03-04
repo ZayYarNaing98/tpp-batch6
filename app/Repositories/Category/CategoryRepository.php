@@ -9,9 +9,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 {
     public function index()
     {
-        $categories = Category::get();
-
-        return $categories;
+        return Category::get();
     }
 
     public function store($data)
@@ -21,8 +19,6 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function show($id)
     {
-        $category = Category::find($id);
-
-        return $category;
+        return Category::find($id);
     }
 }

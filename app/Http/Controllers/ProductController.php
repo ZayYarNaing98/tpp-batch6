@@ -25,13 +25,12 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        // dd($categories);
+
         return view('products.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $data = $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',

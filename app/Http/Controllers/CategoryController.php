@@ -45,8 +45,6 @@ class CategoryController extends Controller
             $data = array_merge($data, ['image' => $imageName]);
         }
 
-        // Category::create($data);
-
         $this->categoryRepository->store($data);
 
         return redirect()->route('categories.index');

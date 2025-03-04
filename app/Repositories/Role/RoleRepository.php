@@ -14,9 +14,7 @@ class RoleRepository implements RoleRepositoryInterface
 
     public function store($validatedData)
     {
-        $role = Role::create($validatedData);
-
-        return $role;
+        return Role::create($validatedData);
     }
 
     public function show($id)
