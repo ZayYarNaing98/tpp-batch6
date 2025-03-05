@@ -9,3 +9,6 @@ use App\Http\Controllers\API\CategoryController;
 // })->middleware('auth:sanctum');
 
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories/{id}', [CategoryController::class, 'show']);
+// Route::post('/categories/{id}', [CategoryController::class, 'destory']);
+

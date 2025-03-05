@@ -75,12 +75,12 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
-    public function delete($id)
-    {
-        $category = $this->categoryRepository->show($id);
+    // public function delete($id)
+    // {
+    //     $category = $this->categoryRepository->show($id);
 
-        $category->delete();
+    //     $category->delete();
 
-        return redirect()->route('categories.index');
-    }
+    //     return redirect()->route('categories.index');
+    // }
 }

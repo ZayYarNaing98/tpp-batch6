@@ -15,4 +15,21 @@ class CategoryController extends BaseController
 
         return $this->success($categories, 'Category Retrieved Successfully', 200);
     }
+
+    public function show($id)
+    {
+        $category = Category::where('id', $id)->first();
+
+        return $this->success($category, "Category Show Successfully", 200);
+    }
+
+    public function delete($id)
+    {
+        $category = Category::where('id', $id)->first();
+
+        $category->delete();
+
+        return $this->success($category, 'Category Destory Successfully', 200);
+    }
+
 }
