@@ -28,6 +28,26 @@ class CategoryController extends BaseController
         return $this->success($data, "Category Show Successfully", 200);
     }
 
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string',
+            'image' => 'required',
+        ]);
+
+        if($request->hasFile('image'))
+        {
+            $imageName = time(). '.' . $request->image->extension();
+
+            $request->image->move(public_path('categoryImages'), $imageName);
+
+            $data = array_merge($data, ['image' => $imageName]);
+        }
+
+        $category =  Category::create($data);
+
+        return $this->success($category, "Category Created Successfully", 201);
+    }
     public function delete($id)
     {
         $category = Category::where('id', $id)->first();
