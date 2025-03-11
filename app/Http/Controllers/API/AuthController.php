@@ -33,6 +33,11 @@ class AuthController extends BaseController
 
             $token = JWTAuth::customClaims($payload)->attempt(['email' => $user->email, 'password' => $credentials['password']]);
 
+            // UserToken::create([
+            //     'user_id' => $user->id,
+            //     'token' =>$token
+            // ]);
+
             return $this->success($token, 'User Login Successfully!', 200);
 
         } catch(Exception $e) {
